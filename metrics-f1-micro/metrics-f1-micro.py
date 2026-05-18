@@ -6,17 +6,13 @@ def f1_micro(y_true, y_pred) -> float:
     y_pred = np.array(y_pred)
     y_true = np.array(y_true)
 
-    TP =0
-    FP =0
-    FN =0
-    for i,j in zip(y_true,y_pred):
-        if i == j :
-            TP +=1
-        else:
-            FP +=1
-    FN = FP    
-    f1 = 2*TP/(2*TP + FP + FN)  
+    tp = np.sum(y_pred == y_true)
+    fp = np.sum(y_pred != y_true)
+    fn = fp
+
+    f1 = 2*tp/(2*tp + fp + fn)
     return f1
+    
             
     
     
