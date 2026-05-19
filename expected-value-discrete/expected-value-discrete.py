@@ -1,13 +1,17 @@
 import numpy as np
 
 def expected_value_discrete(x, p):
-    x = np.asarray(x, dtype=float)
-    p = np.asarray(p, dtype=float)
-
-    if x.shape != p.shape:
+    """
+    Returns: float expected value
+    """
+    x = np.array(x)
+    p = np.array(p)
+    total_p =np.sum(p)
+    
+    if len(x) != len(p):
         raise ValueError
-
-    if not np.isclose(np.sum(p), 1.0, atol=1e-6):
-        raise ValueError("Probabilities must sum to 1")
-
-    return float(np.dot(x, p))
+    if not np.allclose(np.sum(p), 1):
+        raise ValueError
+    else:
+        Expected_val =np.sum(x*p)
+    return Expected_val
